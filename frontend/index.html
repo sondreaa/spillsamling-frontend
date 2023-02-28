@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sondrespill</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="header1">
+            <h1>Sondres Spillsamling</h1>
+            <!-- <div id="randombtndiv">            
+                <button id="randombtn">velg tilfeldig</button>  
+            </div> -->
+        </div>
+
+        <div id="header2">
+            <div class="dropdown">
+                <button class="dropbtn">Filtrer</button>
+                <div class="dropdown-content">
+                    <br>
+                    <div>
+
+                        <input type="checkbox" id="Alle" name="Alle" onchange="alle()" checked>
+                        <label for="Alle">Alle</label>
+
+                    </div>
+                    <p>‎ ‎ ‎ Platform</p>
+
+                    <div>
+                        <input type="checkbox" id="DS" class="filter" name="DS" onchange="dscheck()" checked>
+                        <label for="DS">DS</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="3DS" class="filter" name="3DS" onchange="ds3check()" checked>
+                        <label for="3DS">3DS</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="GameBoy" class="filter" name="GameBoy" onchange="gbcheck()" checked>
+                        <label for="GameBoy">GameBoy</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Switch" class="filter" name="Switch" onchange="switchcheck()" checked>
+                        <label for="Switch">Switch</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="PS2" class="filter" name="PS2" onchange="ps2check()" checked>
+                        <label for="PS2">PS2</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="PC" class="filter" name="PC" onchange="pccheck()" checked>
+                        <label for="PC">PC</label>
+                    </div>
+
+                    <p>‎ ‎ ‎ Fysisk/Digitalt</p>
+
+                    <div>
+                        <input type="checkbox" id="Fysisk" class="filter" name="Fysisk" onchange="phycheck()" checked>
+                        <label for="Fysisk">Fysisk</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="Digitalt" class="filter" name="Digitalt" onchange="digcheck()" checked>
+                        <label for="Digitalt">Digitalt</label>
+                    </div>
+                    <br>
+                                           
+                </div>
+                
+              </div>
+        </div>
+
+        <!-- <div class="text">
+            <p id="platform">Tittel  |  Platform  |  Physical/Digital</p>
+
+        </div> -->
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html> 
