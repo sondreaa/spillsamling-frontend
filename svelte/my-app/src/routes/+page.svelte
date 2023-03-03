@@ -8,7 +8,10 @@
 
     <div id="container">
         <div id="header1">
+
+            <img src="./src/routes/img/face.png" alt="" id="face">
             <h1>Sondres Spillsamling</h1>
+            <img src="./src/routes/img/face.png" alt="" id="face">
 
         </div>
 
@@ -23,7 +26,7 @@
                         <label for="Alle">Alle</label>
 
                     </div>
-                    <!-- <p>‎ ‎ ‎ Platform</p> -->
+
                     <br>
 
                     <div>
@@ -55,54 +58,70 @@
                                            
                 </div>
                 
-              </div>
+            </div>
+            <div id="search">
+                <input type="text" placeholder="søk etter spill" bind:value={search}>
+
+            </div>
+            
         </div>
 
         <div class="text">
+            
+            {#if search}
+                {#each allgames as platformlist}   
+                    {#each platformlist as {title, platform, physical}}
+                        {#if title.toLowerCase().includes(search.toLowerCase())}
 
-            {#if DScheck}
-                {#each DSgames as {title, platform, physical}}
+                            <Gamecard title={title} platform={platform} physical={physical}></Gamecard>
 
-                    <p>{platform}: {title} | {phydig(physical)}</p>
-
+                        {/if}
+                    {/each}
                 {/each}
-           {/if}
-           {#if DS3check}
-                {#each DS3games as {title, platform, physical}}
+            {:else}
+                {#if DScheck}
+                    {#each DSgames as {title, platform, physical}}
 
-                    <p>{platform}: {title} | {phydig(physical)}</p>
+                        <Gamecard title={title} platform={platform} physical={physical}></Gamecard>
 
-                {/each}
+                    {/each}
+                {/if}
+                {#if DS3check}
+                    {#each DS3games as {title, platform, physical}}
+
+                        <Gamecard title={title} platform={platform} physical={physical}></Gamecard>
+
+                    {/each}
+                {/if}
+                {#if GBcheck}
+                    {#each GBgames as {title, platform, physical}}
+
+                        <Gamecard title={title} platform={platform} physical={physical}></Gamecard>
+
+                    {/each}
+                {/if}
+                {#if Switchcheck}
+                    {#each Switchgames as {title, platform, physical}}
+
+                        <Gamecard title={title} platform={platform} physical={physical}></Gamecard>
+
+                    {/each}
+                {/if}
+                {#if PS2check}
+                    {#each PS2games as {title, platform, physical}}
+
+                        <Gamecard title={title} platform={platform} physical={physical}></Gamecard>
+
+                    {/each}
+                {/if}
+                {#if PCcheck}
+                    {#each PCgames as {title, platform, physical}}
+
+                        <Gamecard title={title} platform={platform} physical={physical}></Gamecard>
+
+                    {/each}
+                {/if}
             {/if}
-            {#if GBcheck}
-                {#each GBgames as {title, platform, physical}}
-
-                    <p>{platform}: {title} | {phydig(physical)}</p>
-
-                {/each}
-            {/if}
-            {#if Switchcheck}
-                {#each Switchgames as {title, platform, physical}}
-
-                    <p>{platform}: {title} | {phydig(physical)}</p>
-
-                {/each}
-            {/if}
-            {#if PS2check}
-                {#each PS2games as {title, platform, physical}}
-
-                    <p>{platform}: {title} | {phydig(physical)}</p>
-
-                {/each}
-            {/if}
-            {#if PCcheck}
-                {#each PCgames as {title, platform, physical}}
-
-                    <p>{platform}: {title} | {phydig(physical)}</p>
-
-                {/each}
-            {/if}
-
         </div>
 
     </div>
@@ -111,16 +130,10 @@
 </body>
 
 <script>
+    import Gamecard from "./Gamecard.svelte";
+
     export let data;
-    console.log(data.spill)
-    
-    function phydig(bool){
-        if (bool){
-            return "Fysisk"
-        }else{
-            return "Digitalt"
-        }
-    }
+    //console.log(data.spill)
 
     let DScheck = true
     let DS3check = true
@@ -183,7 +196,7 @@
 
     for (let i = 0; i < data.spill.length; i++) {
         let s = data.spill[i]
-        console.log(s.title, s.platform, s.physical)
+        //console.log(s.title, s.platform, s.physical)
 
         let p = s.platform
         if (p == "DS"){
@@ -198,15 +211,19 @@
             PS2games.push(s)
         }else if (p == "PC"){
             PCgames.push(s)
-        } 
+        }
     }
+
+    let search = ""
+
+    let allgames = [DSgames, DS3games, GBgames, Switchgames, PS2games, PCgames]
     
 </script>
 
 <style>
 body{
-    background-color: rgb(48, 48, 48);
-    color: white;
+    background-color: white;
+    color: black;
 }
 #container{
     position: absolute;
@@ -217,6 +234,8 @@ body{
 }
 
 #header1{
+    display: flex;
+    justify-content: center;
     z-index: -1;
     
     padding: 1px;
@@ -225,9 +244,14 @@ body{
     background: #0b741c;
     color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 25px;
-    
+    font-size: 25px; 
 }
+#face{
+    
+    height: 100px;
+}
+
+
 
 #header2{
     padding: 0px;
@@ -238,15 +262,19 @@ body{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 10px;
     position: sticky;
+    top: 0;
+    display: flex;
+    
 }
 
 /* Dropdown Button */
 .dropbtn {
     background-color: #969696;
     color: white;
-    padding: 16px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 15px;
     
-    font-size: 16px;
+    font-size: large;
     border: none;
   }
   
@@ -275,11 +303,17 @@ body{
     /* Change the background color of the dropdown button when the dropdown content is shown */
     .dropdown:hover .dropbtn {background-color: #3e8e41;}
     
+#search{
+    position:absolute;
+    top:15px;
+    left: 85px;
+
+}
 
 .text{
     z-index: 1;
     font-size: larger;
-    top: 200px;
-    padding-left: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
 </style>
