@@ -9,9 +9,9 @@
     <div id="container">
         <div id="header1">
 
-            <img src="./src/routes/img/face.png" alt="" id="face">
+            <img src="./src/routes/img/face.png" alt="face" id="face">
             <h1>Sondres Spillsamling</h1>
-            <img src="./src/routes/img/face.png" alt="" id="face">
+            <img src="./src/routes/img/face.png" alt="face" id="face">
 
         </div>
 
@@ -133,7 +133,7 @@
     import Gamecard from "./Gamecard.svelte";
 
     export let data;
-    //console.log(data.spill)
+    // console.log(data.spill)
 
     let DScheck = true
     let DS3check = true
